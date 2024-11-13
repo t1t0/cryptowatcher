@@ -9,4 +9,10 @@ class Crypto extends Model
 {
     /** @use HasFactory<\Database\Factories\CryptoFactory> */
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

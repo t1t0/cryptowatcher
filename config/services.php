@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'conmarketcap' => [
+        'base_url' => env('COINMARKETCAP_API_BASE_URL'),
+        'api_key' => env("COINMARKETCAP_API_KEY")
+    ],
+
 ];

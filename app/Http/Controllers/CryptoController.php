@@ -13,13 +13,11 @@ class CryptoController extends Controller
         $this->cryptoRepository = $cryptoRepository; 
     } 
 
-    public function index(string $sort, string $currencyType) { 
-        $cryptos = $this->cryptoRepository->listLatestCoins($sort, $currencyType); 
-        return view('cryptos.index', compact('cryptos')); 
+    public function index(?string $sort, ?string $currencyType) { 
+        return $this->cryptoRepository->listLatestCoins($sort, $currencyType); 
     } 
-    
+
     public function show(string $symbol, string $currency) { 
-        $coin = $this->cryptoRepository->getLatestCoinQuote($symbol, $currency);
-         return view('cryptos.show', compact('coin')); 
+        return $this->cryptoRepository->getLatestCoinQuote($symbol, $currency);
     }
 }

@@ -8,15 +8,21 @@ use Livewire\Component;
 
 class CryptoList extends Component
 {
-    protected $cryptoRepository; 
+    protected $cryptoRepository;
     public $cryptos = [];
+    public $coins = [];
 
-    public function render(CryptoApiRepositoryInterface $cryptoRepository)
+    public function mount(CryptoApiRepositoryInterface $cryptoRepository)
+    {
+        $this->cryptoRepository = $cryptoRepository;
+        $this->coins = $this->cryptoRepository->listLatestCoins('market_cap', 'coins');
+    }
+
+    public function render()
     {
         $this->cryptos = [];
-        $this->cryptoRepository = $cryptoRepository; 
         $coins = Auth::user()->cryptos;
-        foreach($coins as $coin){
+        foreach ($coins as $coin) {
             $response = $this->cryptoRepository->getLatestCoinQuote($coin->symbol, 'EUR');
             $this->cryptos[] = [
                 'name' => $response[$coin->symbol]['name'],

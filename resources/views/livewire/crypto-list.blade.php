@@ -24,8 +24,8 @@
 
 @script
 <script>
-    //setInterval(() => {
-    //    $wire.$refresh()
-    //}, 300000)
+    setInterval(() => {
+        $wire.$refresh()
+    }, 300000)
 </script>
 @endscript

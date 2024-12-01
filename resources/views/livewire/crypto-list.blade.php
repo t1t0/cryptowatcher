@@ -1,11 +1,7 @@
 <div>
     <div class='bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-6'>
         <div class="p-6 text-gray-900 dark:text-gray-100">
-            <select>
-                @foreach ( $coins as $coin )
-                <option value='{{ $coin["symbol"] }}'>{{ $coin['name'] }} ({{ $coin["symbol"] }})</option>
-                @endforeach
-            </select>
+            <x-ts-select.native :options="$coins" select="label:label|value:value" />
         </div>
     </div>
 

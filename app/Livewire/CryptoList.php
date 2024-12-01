@@ -15,7 +15,10 @@ class CryptoList extends Component
     public function mount(CryptoApiRepositoryInterface $cryptoRepository)
     {
         $this->cryptoRepository = $cryptoRepository;
-        $this->coins = $this->cryptoRepository->listLatestCoins('market_cap', 'coins');
+        $responsedcoins = $this->cryptoRepository->listLatestCoins('market_cap', 'coins');
+        $this->coins = collect($responsedcoins)->map(function ($coin) {
+            return ['label' => $coin['name'] . ' (' . $coin['symbol'] . ')', 'value' => $coin['symbol']];
+        });
     }
 
     public function render()
